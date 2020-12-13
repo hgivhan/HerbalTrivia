@@ -25,6 +25,8 @@ public class Answer {
         return answerList.get(0) + "\n" +
         answerList.get(1) + "\n" +
         answerList.get(2) + "\n" +
-        answerList.get(3);
+        answerList.get(3) + "\n\n";
     }
+
+
 }
