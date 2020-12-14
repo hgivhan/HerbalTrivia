@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class IOConsole {
     private final Scanner input;
     private final PrintStream output;
+    Menu menu;
 
     public IOConsole(InputStream input, PrintStream output) {
         this.input = new Scanner(input);
@@ -31,13 +32,13 @@ public class IOConsole {
             return input;
         } catch (NumberFormatException nfe) {
             println("[ %s ] is an invalid user input!", stringInput);
-            println("Try inputting an integer value! Error Code:");
-            return 101;
+            println("Try inputting an integer value!");
         }
+        return 0;
     }
 
     public String promptForAnswer(){
-        return "Please type your answer as a single letter";
+        return "Please type your answer (A, B, C, or D)";
     }
 
     public String correctAnswer(){

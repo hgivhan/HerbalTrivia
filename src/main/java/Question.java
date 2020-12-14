@@ -18,5 +18,4 @@ public class Question {
         return question;
     }
 }
-//answer is a letter, but I want to display full correct answer if they get it wrong
-    // where to make array of questions to be randomly displayed only once each
+
