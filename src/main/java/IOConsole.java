@@ -41,15 +41,11 @@ public class IOConsole {
     }
 
     public String correctAnswer(){
-        return "Ding ding, that is correct!";
+        return "Ding ding, that is correct!\n";
     }
 
     public String wrongAnswer(){
-        return "That's not correct, keep studying...";
-    }
-
-    public String promptNext(){
-        return getStringInput("Press (1) to continue playing\n" + "Press (2) to quit");
+        return "That's not correct, let's try another...\n";
     }
 
     public void delay() {

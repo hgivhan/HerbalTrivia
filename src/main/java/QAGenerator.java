@@ -22,10 +22,11 @@ public class QAGenerator {
     public String generateRandomQ(){
         Object[] randomQAPair = qaMap.keySet().toArray();
         Object random = randomQAPair[new Random().nextInt(randomQAPair.length)];
-        return ("Question:\n" + random + "\n" + qaMap.get(random));
-    }
-    //evaluate randomly generated info
-    public void evaluateRandomlyGeneratedKeyValue(){
+        String newStr = random + "\n" + qaMap.get(random);
+        qaMap.remove(random);
+        return newStr;
+
+
 
 
     }

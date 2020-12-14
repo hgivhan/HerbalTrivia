@@ -15,7 +15,7 @@ public class Menu {
     public void mainMenu() {
         welcomeMessage();
         readyGo();
-        play();
+        getQandA();
 
     }
 
@@ -29,94 +29,84 @@ public class Menu {
         console.delay();
         console.println("2");
         console.delay();
-        console.println("1..." + "\n");
+        console.println("1");
+        console.delay();
+        console.println("Go!"+ "\n");
         console.delay();
     }
 
     //evaluate randomly generated info to get correct answer for each key
     //remove the key-value pair from map if it was generated to avoid duplicates in quiz
-    public String evaluateRandomlyGeneratedKeyValue() {
-        Map<Question, Answer> qaMap = new HashMap();
-        if (qag.generateRandomQ().equals(qaMap.get("Q1"))) { //check if random = given key
-            String correctAnswer = "A";
-            qaMap.remove("Q1");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q2"))) { //check if random = given key
-            String correctAnswer = "C";
-            qaMap.remove("Q2");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q3"))) { //check if random = given key
-            String correctAnswer = "B";
-            qaMap.remove("Q3");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q4"))) { //check if random = given key
-            String correctAnswer = "C";
-            qaMap.remove("Q4");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q5"))) { //check if random = given key
-            String correctAnswer = "D";
-            qaMap.remove("Q5");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q6"))) { //check if random = given key
-            String correctAnswer = "A";
-            qaMap.remove("Q6");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q7"))) { //check if random = given key
-            String correctAnswer = "D";
-            qaMap.remove("Q7");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q8"))) { //check if random = given key
-            String correctAnswer = "B";
-            qaMap.remove("Q8");
-            return correctAnswer;
-        } else if (qag.generateRandomQ().equals(qaMap.get("Q9"))) { //check if random = given key
-            String correctAnswer = "C";
-            qaMap.remove("Q9");
-            return correctAnswer;
-        } else { //this would be "Q10" key
-            String correctAnswer = "A";
-            qaMap.remove("Q10");
-            return correctAnswer;
-        }
+    // (qag.generateRandomQ().equals(qaMap.get("Q3")))
+    public void getQandA() {
+        int i = 0;
+        while(i<10){
+//        for (int i = 0; i == 10; i++) {
+            String random = qag.generateRandomQ();
+            console.println(random);
+                if (random.contains("Q1")) { //check if random = given key
+                    EvalAnswer("A");
+                    i++;
+                } else if (random.contains("Q2") == true) {
+                    EvalAnswer("C");
+                    i++;
+                } else if (random.contains("Q3") == true) {
+                    EvalAnswer("B");
+                    i++;
+                } else if (random.contains("Q4") == true) {
+                    EvalAnswer("C");
+                    i++;
+                } else if (random.contains("Q5") == true) {
+                    EvalAnswer("D");
+                    i++;
+                } else if (random.contains("Q6") == true) {
+                    EvalAnswer("A");
+                    i++;
+                } else if (random.contains("Q7") == true) {
+                    EvalAnswer("D");
+                    i++;
+                } else if (random.contains("Q8") == true) {
+                    EvalAnswer("B");
+                    i++;
+                } else if (random.contains("Q9") == true) {
+                    EvalAnswer("C");
+                    i++;
+                } else { //this is "Q10"
+                    EvalAnswer("A");
+                    i++;
+                }
+            }
+        checkIfPlayAgain();
     }
+
 
     //generate random set and check what was generated
     // get input from user, compare answers, return outcome
-    public void play() {
-        Map<Question, Answer> qaMap = new HashMap(); //new map
+    public void EvalAnswer(String correctAnswer) {
         int pointsCount = 0; //point count
-
-        //for (Question q : qaMap.keySet()) { //loop thru map
-            console.print(qag.generateRandomQ());
-            String value = evaluateRandomlyGeneratedKeyValue();//for each loop, generate random
             String givenAnswer = console.getStringInput(console.promptForAnswer()); //get answer
-                if (givenAnswer.equals(value)) { //check if given is correct
-                    pointsCount++; //if so, increase points
-                    console.println(console.correctAnswer()); //print correct
-                } else {
-                    console.println(console.wrongAnswer()); //and print incorrect
-                }
-                checkIfPlayAgain();
-
+            if (givenAnswer.toUpperCase().equals(correctAnswer)) { //check if given is correct
+                pointsCount++; //if so, increase points
+                console.println(console.correctAnswer()); //print correct
+            } else {
+                console.println(console.wrongAnswer()); //and print incorrect
             }
+        }
+
 
     public void checkIfPlayAgain(){
-        console.getIntegerInput(console.promptNext());
-        if (console.getIntegerInput(console.promptNext()) == 1) {
-            play();
+       Integer input = console.getIntegerInput("Press (1) to continue playing\n" + "Press (2) to quit");
+        if (input == 1) {
+            mainMenu();
         }
-        else if (console.getIntegerInput(console.promptNext()) == 2) {
+        else if (input == 2) {
             console.println("Thanks for playing!");
         }
         else {
             console.println("Please enter (1) or (2)");
         }
-
-
-        }
-
-
-            }
+    }
+}
 
 
 
