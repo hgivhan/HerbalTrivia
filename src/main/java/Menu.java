@@ -72,6 +72,7 @@ public class Menu {
                 i++;
             }
         }
+        console.println("Your total points are: " + getCounter() + "/5.");
         checkIfPlayAgain();
     }
 
@@ -105,9 +106,10 @@ public class Menu {
         public void checkIfPlayAgain(){
             Integer input = console.getIntegerInput("Press (1) to continue playing\n" + "Press (2) to quit");
             if (input == 1) {
+                counter = 0;
                 mainMenu();
             } else if (input == 2) {
-                console.println("Thanks for playing! You're total points are: " + getCounter() + "/5.");
+                console.println("Thanks for playing!");
             } else {
                 console.println("There are only two options:");
                 checkIfPlayAgain();
